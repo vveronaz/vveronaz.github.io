@@ -1,1 +1,79 @@
-<link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verity Zaffar | Interactive CV</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Verity Zaffar</h1>
+  <p>MSc Applied AI & Data Analytics Student | Data Analyst | AI Enthusiast</p>
+  <button onclick="showSection('projects')">View My Projects</button>
+</header>
+
+<nav>
+  <button onclick="showSection('about')">About</button>
+  <button onclick="showSection('skills')">Skills</button>
+  <button onclick="showSection('projects')">Projects</button>
+  <button onclick="showSection('experience')">Experience</button>
+  <button onclick="showSection('contact')">Contact</button>
+</nav>
+
+<section id="about" class="active">
+  <h2>About Me</h2>
+  <p>
+    I am an MSc Applied Artificial Intelligence and Data Analytics student with
+    experience in data analysis, AI, business problem-solving and IT support.
+  </p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="cards">
+    <div>Python</div>
+    <div>SQL</div>
+    <div>Power BI</div>
+    <div>Machine Learning</div>
+    <div>Data Visualisation</div>
+    <div>Business Analysis</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project-card">
+    <h3>Cybersecurity Attack Visualisation</h3>
+    <p>Used Python, NetworkX and PyVis to visualise DDoS traffic patterns.</p>
+  </div>
+  <div class="project-card">
+    <h3>Telco Customer Churn Analysis</h3>
+    <p>Used SAS Enterprise Guide to identify churn patterns and customer risk factors.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <p><strong>Junior IT Technician</strong> – IT support, Office 365, SharePoint and technical troubleshooting.</p>
+  <p><strong>AI Workshop Facilitator</strong> – Supporting safe and practical AI tool use.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: your-email@example.com</p>
+  <p>LinkedIn: linkedin.com/in/your-profile</p>
+  <p>GitHub: github.com/vveronaz</p>
+</section>
+
+<script>
+function showSection(sectionId) {
+  document.querySelectorAll("section").forEach(section => {
+    section.classList.remove("active");
+  });
+  document.getElementById(sectionId).classList.add("active");
+}
+</script>
+
+</body>
+</html>
