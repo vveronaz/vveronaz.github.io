@@ -1,79 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Verity Zaffar | Interactive CV</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Born In Bradford: Age of Wonder Adolescent Wellbeing Research</title>
+  <meta name="description" content="A collaborative research programme bringing together four interconnected studies to better understand adolescent wellbeing." />
+  <style>
+    :root {
+      --purple: #2f1b83;
+      --deep-purple: #1e145f;
+      --blue: #0b69c7;
+      --sky: #14a5e8;
+      --green: #3b9c2c;
+      --lime: #88b91f;
+      --ink: #10103d;
+      --muted: #5f6685;
+      --soft-blue: #eef6ff;
+      --soft-purple: #f2efff;
+      --soft-green: #f0faee;
+      --card: #ffffff;
+      --line: #d9ddf0;
+      --shadow: 0 18px 45px rgba(31, 20, 95, 0.12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(20, 165, 232, 0.13), transparent 28%),
+        radial-gradient(circle at 95% 4%, rgba(136, 185, 31, 0.12), transparent 26%),
+        linear-gradient(180deg, #ffffff 0%, #f7f9ff 45%, #ffffff 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 0 46px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      opacity: .45;
+      z-index: -1;
+    }
+
+    .hero::before {
+      width: 240px;
+      height: 240px;
+      background: #dceeff;
+      right: -80px;
+      top: -60px;
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 180px;
+      background: #efeaff;
+      left: -70px;
+      bottom: -60px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 44px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    .bib-dot {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--lime);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 22px rgba(136, 185, 31, .25);
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--deep-purple);
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      padding: 9px 14px;
+      border-radius: 999px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: white;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px rgba(59, 156, 44, .18);
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 6vw, 5rem);
+      line-height: .98;
+      margin: 0 0 18px;
+      color: var(--deep-purple);
+      letter-spacing: -0.055em;
+    }
+
+    h1 strong {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .subtitle {
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      color: var(--purple);
+      font-weight: 800;
+      max-width: 760px;
+      margin: 0 0 22px;
+    }
+
+    .hero p {
+      font-size: 1.03rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+    }
+
+    .poster-preview {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid #e5e8f5;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .badge {
+      background: var(--soft-purple);
+      color: var(--purple);
+      border: 1px solid #ddd6ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    section { padding: 34px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      line-height: 1.1;
+      margin: 0;
+      color: var(--deep-purple);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .overview {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .overview::before {
+      content: "“";
+      position: absolute;
+      top: -35px;
+      right: 24px;
+      font-size: 8rem;
+      color: rgba(47, 27, 131, .12);
+      font-weight: 900;
+    }
+
+    .overview p {
+      margin: 0;
+      font-size: 1.08rem;
+      max-width: 980px;
+    }
+
+    .streams {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stream-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 34px rgba(31, 20, 95, .09);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .stream-top {
+      padding: 18px 18px 14px;
+      background: linear-gradient(135deg, var(--soft-purple), white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stream-card:nth-child(2) .stream-top { background: linear-gradient(135deg, var(--soft-blue), white); }
+    .stream-card:nth-child(3) .stream-top { background: linear-gradient(135deg, #f2efff, white); }
+    .stream-card:nth-child(4) .stream-top { background: linear-gradient(135deg, var(--soft-green), white); }
+
+    .emoji {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      background: white;
+      border-radius: 18px;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .stream-card h3 {
+      margin: 0 0 6px;
+      color: var(--deep-purple);
+      font-size: 1.22rem;
+      line-height: 1.15;
+    }
+
+    .stream-card .topic {
+      margin: 0;
+      color: var(--blue);
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .stream-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .stream-body p {
+      margin: 0 0 18px;
+      color: #25264b;
+      font-size: .97rem;
+    }
+
+    .btn {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 11px 16px;
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      color: white;
+      box-shadow: 0 10px 22px rgba(11, 105, 199, .18);
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--purple);
+      border: 2px solid var(--purple);
+      box-shadow: none;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .resource-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card h3 { margin: 0 0 8px; color: var(--deep-purple); }
+    .resource-card p { margin: 0 0 18px; color: var(--muted); }
+
+    footer {
+      margin-top: 34px;
+      background: linear-gradient(90deg, var(--deep-purple), var(--purple));
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer p { margin: 6px 0 0; opacity: .86; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .resources { grid-template-columns: 1fr; }
+      .streams { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .streams { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 10px; }
+      header, .hero { text-align: left; }
+    }
+  </style>
 </head>
 <body>
+  <main class="hero" id="top">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="bib-dot">BiB</div>
+          <div class="brand-text">
+            Age of Wonder
+            <span>Adolescent Wellbeing Research</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#streams">Research Streams</a>
+          <a href="#resources">Poster</a>
+        </div>
+      </nav>
 
-<header>
-  <h1>Verity Zaffar</h1>
-  <p>MSc Applied AI & Data Analytics Student | Data Analyst | AI Enthusiast</p>
-  <button onclick="showSection('projects')">View My Projects</button>
-</header>
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Born In Bradford: Age of Wonder</div>
+          <h1>Adolescent <strong>Wellbeing</strong> Research</h1>
+          <p class="subtitle">A collaborative research programme bringing together four interconnected studies to better understand adolescent wellbeing.</p>
+          <p>Exploring mental health, school experiences, digital life, health behaviours, and social environments using Age of Wonder cohort data.</p>
+          <div class="badge-row" aria-label="Research themes">
+            <span class="badge">Mental Health</span>
+            <span class="badge">School Experiences</span>
+            <span class="badge">Digital Life</span>
+            <span class="badge">Health Behaviours</span>
+          </div>
+        </div>
 
-<nav>
-  <button onclick="showSection('about')">About</button>
-  <button onclick="showSection('skills')">Skills</button>
-  <button onclick="showSection('projects')">Projects</button>
-  <button onclick="showSection('experience')">Experience</button>
-  <button onclick="showSection('contact')">Contact</button>
-</nav>
+        <div class="hero-card">
+          <img class="poster-preview" src="assets/poster-preview.png" alt="Conference poster preview for Age of Wonder adolescent wellbeing research" />
+        </div>
+      </div>
+    </div>
+  </main>
 
-<section id="about" class="active">
-  <h2>About Me</h2>
-  <p>
-    I am an MSc Applied Artificial Intelligence and Data Analytics student with
-    experience in data analysis, AI, business problem-solving and IT support.
-  </p>
-</section>
+  <section id="overview">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Project Overview</h2>
+        <p>A brief summary of the research programme and its purpose.</p>
+      </div>
+      <div class="overview">
+        <p>Adolescence is a critical stage of development, shaped by a range of psychological, social, behavioural, and environmental influences. This project brings together four complementary research studies using data from the Born in Bradford Age of Wonder cohort to explore factors associated with adolescent wellbeing. By examining experiences across different areas of young people's lives, the programme aims to contribute to a broader understanding of wellbeing during adolescence and generate evidence to inform future research, policy, and support initiatives.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="cards">
-    <div>Python</div>
-    <div>SQL</div>
-    <div>Power BI</div>
-    <div>Machine Learning</div>
-    <div>Data Visualisation</div>
-    <div>Business Analysis</div>
-  </div>
-</section>
+  <section id="streams">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Research Streams</h2>
+        <p>Four separate researchers are contributing interconnected studies to the wider adolescent wellbeing programme.</p>
+      </div>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="project-card">
-    <h3>Cybersecurity Attack Visualisation</h3>
-    <p>Used Python, NetworkX and PyVis to visualise DDoS traffic patterns.</p>
-  </div>
-  <div class="project-card">
-    <h3>Telco Customer Churn Analysis</h3>
-    <p>Used SAS Enterprise Guide to identify churn patterns and customer risk factors.</p>
-  </div>
-</section>
+      <div class="streams">
+        <article class="stream-card">
+          <div class="stream-top">
+            <div class="emoji">🧠</div>
+            <h3>Verity Zaffar</h3>
+            <p class="topic">Internalising &amp; Externalising Difficulties</p>
+          </div>
+          <div class="stream-body">
+            <p>Investigating predictors of internalising and externalising difficulties in adolescents using explainable machine learning and longitudinal Age of Wonder data. The study aims to support the development of an interpretable wellbeing tool that can help identify behavioural difficulty patterns and inform earlier support.</p>
+            <a class="btn" href="https://www.linkedin.com/in/your-linkedin-url" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
 
-<section id="experience">
-  <h2>Experience</h2>
-  <p><strong>Junior IT Technician</strong> – IT support, Office 365, SharePoint and technical troubleshooting.</p>
-  <p><strong>AI Workshop Facilitator</strong> – Supporting safe and practical AI tool use.</p>
-</section>
+        <article class="stream-card">
+          <div class="stream-top">
+            <div class="emoji">🏫</div>
+            <h3>Tayabah Haleem</h3>
+            <p class="topic">School Experiences &amp; Wellbeing</p>
+          </div>
+          <div class="stream-body">
+            <p>Exploring how school experiences, including engagement, belonging, and peer relationships, influence adolescent well-being. The research examines the role of educational environments in shaping well-being outcomes during adolescence.</p>
+            <a class="btn" href="https://www.linkedin.com/in/add-linkedin-url" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: your-email@example.com</p>
-  <p>LinkedIn: linkedin.com/in/your-profile</p>
-  <p>GitHub: github.com/vveronaz</p>
-</section>
+        <article class="stream-card">
+          <div class="stream-top">
+            <div class="emoji">📱</div>
+            <h3>Odafe Otedo</h3>
+            <p class="topic">Digital Experiences, Wellbeing &amp; Loneliness</p>
+          </div>
+          <div class="stream-body">
+            <p>Examining how digital experiences and online interactions relate to adolescent wellbeing and feelings of loneliness. The study seeks to better understand the opportunities and challenges presented by an increasingly connected world.</p>
+            <a class="btn" href="https://www.linkedin.com/in/add-linkedin-url" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
 
-<script>
-function showSection(sectionId) {
-  document.querySelectorAll("section").forEach(section => {
-    section.classList.remove("active");
-  });
-  document.getElementById(sectionId).classList.add("active");
-}
-</script>
+        <article class="stream-card">
+          <div class="stream-top">
+            <div class="emoji">🌙</div>
+            <h3>Aksah Kowsor</h3>
+            <p class="topic">Sleep, Academic Stress &amp; Substance Use</p>
+          </div>
+          <div class="stream-body">
+            <p>Assessing the role of sleep duration, bedtime timing, academic stress, and substance use in adolescent mental wellbeing. The research considers how health-related behaviours may shape wellbeing during adolescence.</p>
+            <a class="btn" href="https://www.linkedin.com/in/add-linkedin-url" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <section id="resources">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Poster & Resources</h2>
+        <p>Use this section for the conference poster PDF and any supporting materials.</p>
+      </div>
+
+      <div class="resources">
+        <div class="resource-card">
+          <h3>Poster PDF</h3>
+          <p>The downloadable poster PDF can be added here once finalised.</p>
+          <a class="btn" href="assets/poster.pdf" target="_blank" rel="noopener">Download Poster PDF</a>
+        </div>
+        <div class="resource-card">
+          <h3>Contact</h3>
+          <p>Use the LinkedIn buttons above to connect with each researcher. Replace the placeholder links when each researcher confirms their profile URL.</p>
+          <a class="btn secondary" href="#streams">Meet the Researchers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <strong>Born In Bradford: Age of Wonder Adolescent Wellbeing Research</strong>
+      <p>Collaborative research exploring adolescent wellbeing across minds, schools, digital lives, and communities.</p>
+    </div>
+  </footer>
 </body>
 </html>
